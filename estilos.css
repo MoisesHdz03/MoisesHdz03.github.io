@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: rgb(13, 149, 190);
+}
+
+.Login{
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.658);
+    position: absolute;
+    left: 75vh;
+    top: 20vh;
+    border-radius: 10px;
+    transition: all .3s;
+}
+
+.Login:hover{
+    box-shadow: 3px 3px 10px black;
+}
+
+.title{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    text-align: center;
+}
+
+.label{
+    position: relative;
+    right: 30px;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.input{
+    color: rgb(13, 149, 190);
+    width: 40vh;
+    height: 30px;
+    border-radius: 5px;
+    padding-left: 5px;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Inicio-Sesion{
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+#email{
+    margin-left: -30px;
+    margin-top: 10px;
+}
+
+#contraseña{
+    margin-left: -30px;
+    margin-top: 10px;
+}
+
+.enviar{
+    position: absolute;
+    top: 40vh;
+    left: 15vh;
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    background: whitesmoke;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.enviar:hover{
+    background: rgb(218, 212, 212);
+}
+
+.enviar:active{
+    box-shadow: 1px 1px 5px black;
+}
+
+#fortaleza-contrasena {
+    font-size: 15px;
+    margin-top: 5px;
+    color: green;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
