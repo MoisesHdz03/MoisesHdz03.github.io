@@ -1,56 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let allCharacters = []; // Variable para almacenar todos los personajes
+    // Función para realizar la búsqueda al hacer clic en el botón de búsqueda
+    document.getElementById("searchButton").addEventListener("click", () => {
+        // Obtenemos el valor del campo de entrada
+        const searchQuery = document.getElementById("searchInput").value.trim();
 
-    // Función para obtener los personajes
-    function getCharacters(done) {
-        fetch("https://rickandmortyapi.com/api/character")
+        // Construimos la URL de la API con el parámetro de búsqueda
+        const apiUrl = `https://rickandmortyapi.com/api/character/?name=${searchQuery}`;
+
+        // Realizamos la solicitud a la API con la URL construida
+        fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                allCharacters = data.results; // Almacena todos los personajes
-                done(allCharacters);
+                // Lógica para mostrar los personajes filtrados
+                displayCharacters(data.results);
             })
-            .catch(error => {
-                console.error('Error fetching characters:', error);
-            });
-    }
+            .catch(error => console.error('Error fetching data:', error));
+    });
 
-    function showFilteredCharacters(filter) {
-        const filteredCharacters = allCharacters.filter(character =>
-            Object.values(character).some(value =>
-                typeof value === 'string' && value.toLowerCase().includes(filter.toLowerCase())
-            )
-        );
+    // Función para mostrar los personajes en tarjetas
+    function displayCharacters(characters) {
+        var itemList = document.getElementById("my-list");
+        var template = document.getElementById("list-template");
+        itemList.innerHTML = ''; // Limpiamos la lista antes de mostrar los resultados
 
-        const itemList = document.getElementById("personaje");
-        const template = document.getElementById("list-template");
-        itemList.innerHTML = ''; 
+        characters.forEach((character, index) => {
+            var total = index + 1;
+            var clone = template.content.cloneNode(true);
 
-        filteredCharacters.forEach((personaje, index) => {
-            const clone = template.content.cloneNode(true);
-
-            clone.querySelector("[data-id='number']").textContent = `${index + 1}`;
-            clone.querySelector("[data-id='title']").textContent = personaje.name;
-            clone.querySelector("[data-id='content']").textContent = `${personaje.status}, ${personaje.species}`;
-            clone.querySelector("[data-id='image']").src = personaje.image;
+            clone.querySelector("[data-id='number']").textContent = `${total}`;
+            clone.querySelector("[data-id='title']").textContent = character.name;
+            clone.querySelector("[data-id='content']").textContent = `Status: ${character.status}, Species: ${character.species}`;
+            clone.querySelector("[data-id='image']").src = character.image;
 
             itemList.appendChild(clone);
         });
     }
 
-    document.querySelector(".btn.btn-primary").addEventListener("click", event => {
-        getCharacters(data => {
-            showFilteredCharacters('');
-        });
-    });
-
-    document.querySelector(".form-control").addEventListener("input", event => {
-        const filter = event.target.value.trim();
-        showFilteredCharacters(filter);
-    });
-
-    document.querySelector(".btn.btn-light").addEventListener("click", event => {
-        const itemList = document.getElementById("personaje");
-        itemList.innerHTML = '';
-    });
+    // Al cargar la página, mostramos todos los personajes sin filtrar
+    fetch('https://rickandmortyapi.com/api/character')
+        .then(response => response.json())
+        .then(data => {
+            displayCharacters(data.results);
+        })
+        .catch(error => console.error('Error fetching data:', error));
 });
-
