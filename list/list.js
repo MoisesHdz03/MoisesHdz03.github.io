@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let currentIndex = 0; // Variable para rastrear el índice actual del personaje
     let allCharacters = []; // Variable para almacenar todos los personajes
 
     // Función para obtener los personajes
@@ -17,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showFilteredCharacters(filter) {
         const filteredCharacters = allCharacters.filter(character =>
-            character.name.toLowerCase().includes(filter.toLowerCase())
+            Object.values(character).some(value =>
+                typeof value === 'string' && value.toLowerCase().includes(filter.toLowerCase())
+            )
         );
 
         const itemList = document.getElementById("personaje");
@@ -50,6 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".btn.btn-light").addEventListener("click", event => {
         const itemList = document.getElementById("personaje");
         itemList.innerHTML = '';
-        currentIndex = 0;
     });
 });
+
