@@ -4,61 +4,83 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap demo</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-<body>
- <style>
-        body {
-            margin: 0; /* Elimina el margen predeterminado del cuerpo */
-            padding: 0; /* Elimina el relleno predeterminado del cuerpo */
-            background-image: url('a.gif'); /* Ruta del archivo GIF */
-            background-size: cover; /* Ajusta el tamaño del fondo para cubrir todo el contenedor */
-            background-repeat: no-repeat; /* Evita la repetición del fondo */
-            background-attachment: fixed; /* Mantiene el fondo fijo mientras se desplaza por la página */
-            /* Puedes ajustar otros estilos según tus necesidades */
+  <link rel="shortcut icon" href="Icono.jpg" type="image/x-icon">
+  <title>Personajes del Morty</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <style>
+        body{
+            background:darkgoldenrod;
         }
 
-        /* Resto de tus estilos aquí */
+        .card {
+            background:darkseagreen; /* Fondo de las Tarjetas */
+            color: #fff; /* Color del texto en las tarjetas, asegurando contraste adecuado */
+            width: 35vh; /* Ancho de cada tarjeta para mostrar 4 en una fila */
+            margin: 10px; /* Margen entre las tarjetas */
+            box-sizing: border-box;
+        }   
+        .titulo{
+            font-family:cursive;
+            font-size: 50px;
+            text-align: center;
+        }   
+        .search{
+            margin-right: 50px;
+            width: 30vh;
+            border-radius: 3px;
+            padding-left: 5px;
+        }   
+        .buscar{
+            background: none;
+            color: blue;
+            width: 200px;
+            text-decoration: underline;
+        }   
+        .buscar:hover{
+            box-shadow: 2px 2px 8px black;
+        }
+
+        #my-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }   
+        .card-img-top {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
-  
-  <div class="container">
-    <div class="row justify-content-center my-5">
-      <div class="col-4">
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="button">Add item</button>
-          <button class="btn btn-light" type="button">Clear all</button>
-        </div>
-      </div>
-    </div>
+</head>
+<body>
 
-    <div class="input-group mb-3">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon1">Filtrar</button>
-      <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-    </div>
-    
-    <div class="row justify-content-center my-5">
-      <div class="col-4">
-        <ol class="list-group" id="personaje">
-        </ol>
-      </div>
-    </div>
+  <div class="d-flex justify-content-center align-items-start mt-5">
+    <h2 class="titulo">Personajes de Rick and Morty</h2>
   </div>
-  <template id="list-template">
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold" data-id="title"></div>
-        <span data-id="content"></span>
-        <img src="" alt="Personaje" data-id="image" style="max-width: 100px; max-height: 100px;">
+  <br/>
+  <div class="d-flex justify-content-center align-items-start mt-5">
+    <input type="text" id="searchInput" class="search" placeholder="Buscar tu personaje favorito">
+    <button class="btn btn-primary buscar" id="searchButton">Encontrar personaje</button>
+  </div>
+    <div class="row justify-content-center my-5">
+      <div class="col-12">
+        <div id="my-list"></div>
       </div>
-      <span class="badge bg-primary rounded-pill" data-id="number">14</span>
-    </li>
-  </template>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <script src="list.js"></script>
-</body>
+    </div>
 
+    <template id="list-template">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" data-id="number"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" data-id="title"></h6>
+                <p class="card-text" data-id="content"></p>
+                <img class="card-img-top" data-id="image" alt="Character Image">
+            </div>
+        </div>
+    </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="list.js"></script>
+
+</body>
 </html>
