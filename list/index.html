@@ -14,10 +14,10 @@
         }
 
         .card {
-            background:darkseagreen; /* Fondo de las Tarjetas */
-            color: #fff; /* Color del texto en las tarjetas, asegurando contraste adecuado */
-            width: 35vh; /* Ancho de cada tarjeta para mostrar 4 en una fila */
-            margin: 10px; /* Margen entre las tarjetas */
+            background:darkseagreen; 
+            color: #fff; 
+            width: 35vh; 
+            margin: 10px; 
             box-sizing: border-box;
         }   
         .titulo{
@@ -33,12 +33,20 @@
         }   
         .buscar{
             background: none;
-            color: blue;
+            color: rgb(223, 223, 9);
             width: 200px;
             text-decoration: underline;
         }   
         .buscar:hover{
             box-shadow: 2px 2px 8px black;
+        }
+
+        .limpiar{
+            margin-left: 20px;
+            background: none;
+            width: 200px;
+            color: blue;
+            text-decoration: underline;
         }
 
         #my-list {
@@ -60,7 +68,8 @@
   <br/>
   <div class="d-flex justify-content-center align-items-start mt-5">
     <input type="text" id="searchInput" class="search" placeholder="Buscar tu personaje favorito">
-    <button class="btn btn-primary buscar" id="searchButton">Encontrar personaje</button>
+    <button class="btn btn-warning buscar" id="searchButton">Encontrar personaje</button>
+    <button class="btn btn-primary limpiar" id="clearButton">Recargar personajes</button>
   </div>
     <div class="row justify-content-center my-5">
       <div class="col-12">
@@ -84,3 +93,4 @@
 
 </body>
 </html>
+
