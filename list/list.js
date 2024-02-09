@@ -11,17 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                // Lógica para mostrar los personajes filtrados
+                // Lógica para mostrar los personajes
                 displayCharacters(data.results);
             })
             .catch(error => console.error('Error fetching data:', error));
     });
 
-    // Función para mostrar los personajes en tarjetas
+    // Función para mostrar los personajes en los cards
     function displayCharacters(characters) {
         var itemList = document.getElementById("my-list");
         var template = document.getElementById("list-template");
-        itemList.innerHTML = ''; // Limpiamos la lista antes de mostrar los resultados
+        itemList.innerHTML = '';
 
         characters.forEach((character, index) => {
             var total = index + 1;
@@ -36,7 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Al cargar la página, mostramos todos los personajes sin filtrar
+    // Recargar pagina
+    document.getElementById("clearButton").addEventListener("click", () => {
+    
+        location.reload();
+    });
+
+    // Al cargar la página se mostraran de nuevo todos los personajes
     fetch('https://rickandmortyapi.com/api/character')
         .then(response => response.json())
         .then(data => {
@@ -44,3 +50,4 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Error fetching data:', error));
 });
+
